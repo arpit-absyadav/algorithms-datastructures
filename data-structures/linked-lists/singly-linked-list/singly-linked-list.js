@@ -59,7 +59,9 @@ class SinglyLinkedList {
   }
 }
 
-const singlyLinkedList = new SinglyLinkedList();
+// const singlyLinkedList = new SinglyLinkedList();
 
-const da = singlyLinkedList.push(3).push(4).push(5);
-console.log(da);
+// const da = singlyLinkedList.push(3).push(4).push(5);
+// console.log(da);
+
+module.exports = SinglyLinkedList;
