@@ -1,38 +1,56 @@
 const SinglyLinkedList = require('../singly-linked-list');
+const SinglyLinkedListNode = require('../singly-linked-list-node');
+
+const iterateLinkedList = (list) => {
+  let current = list.head;
+  const data = [];
+  while (current !== list.tail) {
+    data.push(current.data);
+    current = current.next;
+  }
+  data.push(list.tail.data);
+  return data;
+};
 
 describe('SinglyLinkedList', () => {
-  it('should create empty linked list', () => {
+  it('should create empty singly linked list', () => {
     const linkedList = new SinglyLinkedList();
     expect(linkedList.head).toBe(null);
     expect(linkedList.tail).toBe(null);
     expect(linkedList.length).toBe(0);
   });
 
-  // it('should append node to linked list', () => {
-  //   const linkedList = new SinglyLinkedList();
+  it('should push node to linked list', () => {
+    const linkedList = new SinglyLinkedList();
 
-  //   expect(linkedList.head).toBeNull();
-  //   expect(linkedList.tail).toBeNull();
+    expect(linkedList.head).toBeNull();
+    expect(linkedList.tail).toBeNull();
 
-  //   linkedList.append(1);
-  //   linkedList.append(2);
+    linkedList.push(1);
+    linkedList.push(2);
 
-  //   expect(linkedList.toString()).toBe('1,2');
-  //   expect(linkedList.tail.next).toBeNull();
-  // });
+    const iteratedData = iterateLinkedList(linkedList);
+    expect(iteratedData).toEqual([1, 2]);
 
-  // it('should prepend node to linked list', () => {
-  //   const linkedList = new SinglyLinkedList();
+    expect(linkedList.head).toBeInstanceOf(SinglyLinkedListNode);
+    expect(linkedList.head.data).toBe(1);
+    expect(linkedList.head.next).toBeInstanceOf(SinglyLinkedListNode);
+    expect(linkedList.tail).toBeInstanceOf(SinglyLinkedListNode);
+    expect(linkedList.tail.data).toBe(2);
+  });
 
-  //   linkedList.prepend(2);
-  //   expect(linkedList.head.toString()).toBe('2');
-  //   expect(linkedList.tail.toString()).toBe('2');
+  it('should prepend node to linked list', () => {
+    const linkedList = new SinglyLinkedList();
 
-  //   linkedList.append(1);
-  //   linkedList.prepend(3);
+    linkedList.pop(2);
+    expect(linkedList.head).toBe('2');
+    expect(linkedList.tail.toString()).toBe('2');
 
-  //   expect(linkedList.toString()).toBe('3,2,1');
-  // });
+    linkedList.append(1);
+    linkedList.prepend(3);
+
+    expect(linkedList.toString()).toBe('3,2,1');
+  });
 
   // it('should delete node by value from linked list', () => {
   //   const linkedList = new SinglyLinkedList();

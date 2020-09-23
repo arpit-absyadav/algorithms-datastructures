@@ -57,6 +57,8 @@ class SinglyLinkedList {
     }
     return removedNode;
   }
+
+  shift() { }
 }
 
 // const singlyLinkedList = new SinglyLinkedList();
